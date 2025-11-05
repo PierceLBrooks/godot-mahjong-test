@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://mjgt3mbgfwtp"]
+
+[ext_resource type="ArrayMesh" uid="uid://bldsqj0dsqrk2" path="res://Ton.svg.obj.obj" id="1_a0tk4"]
+[ext_resource type="Script" uid="uid://dy42cgg80np1b" path="res://mesh_instance_3d.gd" id="2_a0tk4"]
+[ext_resource type="Script" uid="uid://dymwblb2485k4" path="res://camera_3d.gd" id="2_noarx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0tk4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("particles")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+mesh = ExtResource("1_a0tk4")
+script = ExtResource("2_a0tk4")
+particles = NodePath("../Camera3D/CPUParticles3D")
+cloud = ExtResource("1_a0tk4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.72144645, -0.30096743, 0.6236455, 0.030709682, 0.9136296, 0.4053863, -0.691789, -0.27331254, 0.6683774, 1.1771038, 1.4063882, 1.1543373)
+script = ExtResource("2_noarx")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Camera3D"]
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Camera3D"]
+visible = false
+mesh = SubResource("SphereMesh_a0tk4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.0009999999, 0, 0, 0, 0.0009999999, 0, 0, 0, 0.001, 0, 0, 0)
+size = Vector3(10000, 1, 10000)
